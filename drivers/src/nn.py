@@ -98,7 +98,7 @@ def train_model(net, X_train, y_train, X_val, y_val, loss_fn, optimizer, EPOCHS,
                   pass
 
              best_val_loss = current_val_loss
-             torch.save(net.state_dict(), f"../files/trained_models/SURFACE_CRACK/{FILENAME}.pt")
+             torch.save(net.state_dict(), FILENAME)
              train_mse.append(current_train_loss)
              val_mse.append(current_val_loss)
              epoch_tolerance = 0

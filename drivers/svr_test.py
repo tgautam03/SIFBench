@@ -54,6 +54,7 @@ if __name__ == "__main__":
 
         else:
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
+            df = df.drop(columns=['b/t'])
             test_combinations = df.iloc[:, 1:5].drop_duplicates().to_numpy()
 
             # Drop crack index
@@ -67,7 +68,7 @@ if __name__ == "__main__":
 
             # Testing
             svr = load('../files/trained_models/svr/{}_TENSION.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            y_pred = svr.predict(d[:,:-1])
+            y_pred = svr.predict(d[:,:-3])
 
             # Saving predictions model
             np.save('../files/predictions/svr/{}_TENSION.npy'.format(csv_file[:-4]), y_pred)
@@ -82,7 +83,7 @@ if __name__ == "__main__":
             
             # Testing
             svr = load('../files/trained_models/svr/{}_BENDING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            y_pred = svr.predict(d[:,:-1])
+            y_pred = svr.predict(d[:,:-3])
 
             # Saving predictions model
             np.save('../files/predictions/svr/{}_BENDING.npy'.format(csv_file[:-4]), y_pred)
@@ -97,7 +98,7 @@ if __name__ == "__main__":
             
             # Testing
             svr = load('../files/trained_models/svr/{}_BEARING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            y_pred = svr.predict(d[:,:-1])
+            y_pred = svr.predict(d[:,:-3])
 
             # Saving predictions model
             np.save('../files/predictions/svr/{}_BEARING.npy'.format(csv_file[:-4]), y_pred)

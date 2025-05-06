@@ -57,6 +57,7 @@ if __name__ == "__main__":
 
         else:
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
+            df = df.drop(columns=['b/t'])
 
             # Drop crack index
             d = df.to_numpy()[:,1:]
@@ -70,7 +71,7 @@ if __name__ == "__main__":
             print("---------------")
             print("Tension Loading")
             print("---------------")
-            X_train, y_train = shuffle_arrays(d[:,:-1], d[:,-3])
+            X_train, y_train = shuffle_arrays(d[:,:-3], d[:,-3])
 
             # Train
             rfr = RandomForestRegressor(max_depth=None)
@@ -83,7 +84,7 @@ if __name__ == "__main__":
             print("---------------")
             print("Bending Loading")
             print("---------------")
-            X_train, y_train = shuffle_arrays(d[:,:-1], d[:,-2])
+            X_train, y_train = shuffle_arrays(d[:,:-3], d[:,-2])
 
             # Train
             rfr = RandomForestRegressor(max_depth=None)
@@ -96,7 +97,7 @@ if __name__ == "__main__":
             print("---------------")
             print("Bearing Loading")
             print("---------------")
-            X_train, y_train = shuffle_arrays(d[:,:-1], d[:,-1])
+            X_train, y_train = shuffle_arrays(d[:,:-3], d[:,-1])
 
             # Train
             rfr = RandomForestRegressor(max_depth=None)
