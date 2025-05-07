@@ -14,7 +14,7 @@ import itertools
 import os
 
 device = 'cuda'
-batch_size = 20
+batch_size = 250000
 lr = 0.001
 
 epochs = 500
@@ -40,17 +40,12 @@ if __name__ == "__main__":
     csv_files = [f for f in os.listdir(dir_path) if f.endswith(".csv")]
 
     for csv_file in tqdm(csv_files):
-        if "THROUGH" in csv_file:
-            print("Skipping ", csv_file)
-            continue
-
         print("=============================")
         print("========= Training: {} ========".format(csv_file))
         print("=============================")
         # Surface crack only has tension loading
         if csv_file[:7] == "SURFACE":
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
-            df = df.drop(columns=['b/t'])
             train_combinations = df.iloc[:, 1:4].drop_duplicates().to_numpy()
 
             # Drop crack index
@@ -87,16 +82,20 @@ if __name__ == "__main__":
             # Train
             fno_model = FNO(len(phi_values), X_train_gpu.shape[-1], modes, width, device)
             fno_model.train_model(X_train_gpu, y_train_gpu, X_val_gpu, y_val_gpu, batch_size, lr, step_size, gamma, epochs, "../files/trained_models/fno/", "{}_TENSION".format(csv_file[:-4]))
+            del fno_model
             print("")
 
         else:
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
             df = df.drop(columns=['b/t'])
             train_combinations = df.iloc[:, 1:5].drop_duplicates().to_numpy()
+            random_indices = np.random.choice(len(train_combinations), size=min(30000, len(train_combinations)), replace=False)
+            train_combinations = train_combinations[random_indices]
 
             # Drop crack index
             d = df.to_numpy()[:,1:]
-            print("Dataset Size: ", d.shape)
+            print("ORIGINAL -> Dataset Size: {}; Num Combinations: {}".format(d.shape, d.shape[0]/128))
+            print("REVISED -> Dataset Size: {}; Num Combinations: {}".format(len(train_combinations)*128, len(train_combinations) ))
 
             # X, y
             X_fno = np.zeros((len(train_combinations), 128, 5))
@@ -132,6 +131,7 @@ if __name__ == "__main__":
             # Train
             fno_model = FNO(len(phi_values), X_train_gpu.shape[-1], modes, width, device)
             fno_model.train_model(X_train_gpu, y_train_gpu, X_val_gpu, y_val_gpu, batch_size, lr, step_size, gamma, epochs, "../files/trained_models/fno/", "{}_TENSION".format(csv_file[:-4]))
+            del fno_model
             print("")
 
             print("---------------")
@@ -146,6 +146,7 @@ if __name__ == "__main__":
             # Train
             fno_model = FNO(len(phi_values), X_train_gpu.shape[-1], modes, width, device)
             fno_model.train_model(X_train_gpu, y_train_gpu, X_val_gpu, y_val_gpu, batch_size, lr, step_size, gamma, epochs, "../files/trained_models/fno/", "{}_BENDING".format(csv_file[:-4]))
+            del fno_model
             print("")
 
             print("---------------")
@@ -160,4 +161,5 @@ if __name__ == "__main__":
             # Train
             fno_model = FNO(len(phi_values), X_train_gpu.shape[-1], modes, width, device)
             fno_model.train_model(X_train_gpu, y_train_gpu, X_val_gpu, y_val_gpu, batch_size, lr, step_size, gamma, epochs, "../files/trained_models/fno/", "{}_BEARING".format(csv_file[:-4]))
+            del fno_model
             print("")

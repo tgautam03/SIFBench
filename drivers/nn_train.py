@@ -14,6 +14,7 @@ import itertools
 import os
 
 device = 'cuda'
+EPOCHS = 50000
 
 def shuffle_arrays(arr1, arr2):
     assert len(arr1) == len(arr2)
@@ -39,12 +40,12 @@ if __name__ == "__main__":
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
 
             # Drop crack index
-            d = df.to_numpy()[::8,1:]
+            d = df.to_numpy()[:,1:]
             print("Dataset Size: ", d.shape)
-            # print("Training on a subset of size 100000 (randomly sampled)")
-            # random_indices = np.random.choice(len(d), size=100000, replace=False)
-            # d = d[random_indices]
-            # print("Revised dataset Size: ", d.shape)
+            print("Training on a subset of size 500000 (randomly sampled)")
+            random_indices = np.random.choice(len(d), size=min(len(d), 500000), replace=False)
+            d = d[random_indices]
+            print("Revised dataset Size: ", d.shape)
 
             # X, y
             print("---------------")
@@ -58,10 +59,9 @@ if __name__ == "__main__":
             y_val_gpu = torch.FloatTensor(np.expand_dims(y_train[int(0.8*len(y_train)):], axis=-1)).to(device)
 
             # Train
-            net = custom_nn.Net10(X_train_gpu.shape[1], 100).to(device)
-            EPOCHS = 100000
+            net = custom_nn.Net10(X_train_gpu.shape[1], 15).to(device)
             loss_fn = nn.MSELoss()
-            optimizer = torch.optim.AdamW(net.parameters(), lr=0.0001)
+            optimizer = torch.optim.AdamW(net.parameters(), lr=0.001)
 
 
             FILENAME = "../files/trained_models/nn/{}_TENSION.pt".format(csv_file[:-4])
@@ -73,12 +73,12 @@ if __name__ == "__main__":
             df = df.drop(columns=['b/t'])
 
             # Drop crack index
-            d = df.to_numpy()[::8,1:]
+            d = df.to_numpy()[:,1:]
             print("Dataset Size: ", d.shape)
-            # print("Training on a subset of size 100000 (randomly sampled)")
-            # random_indices = np.random.choice(len(d), size=100000, replace=False)
-            # d = d[random_indices]
-            # print("Revised dataset Size: ", d.shape)
+            print("Training on a subset of size 500000 (randomly sampled)")
+            random_indices = np.random.choice(len(d), size=min(len(d),500000), replace=False)
+            d = d[random_indices]
+            print("Revised dataset Size: ", d.shape)
 
             # X, y
             print("---------------")
@@ -92,10 +92,9 @@ if __name__ == "__main__":
             y_val_gpu = torch.FloatTensor(np.expand_dims(y_train[int(0.8*len(y_train)):], axis=-1)).to(device)
 
             # Train
-            net = custom_nn.Net10(X_train_gpu.shape[1], 100).to(device)
-            EPOCHS = 100000
+            net = custom_nn.Net10(X_train_gpu.shape[1], 15).to(device)
             loss_fn = nn.MSELoss()
-            optimizer = torch.optim.AdamW(net.parameters(), lr=0.0001)
+            optimizer = torch.optim.AdamW(net.parameters(), lr=0.001)
 
 
             FILENAME = "../files/trained_models/nn/{}_TENSION.pt".format(csv_file[:-4])
@@ -113,10 +112,9 @@ if __name__ == "__main__":
             y_val_gpu = torch.FloatTensor(np.expand_dims(y_train[int(0.8*len(y_train)):], axis=-1)).to(device)
 
             # Train
-            net = custom_nn.Net10(X_train_gpu.shape[1], 100).to(device)
-            EPOCHS = 100000
+            net = custom_nn.Net10(X_train_gpu.shape[1], 15).to(device)
             loss_fn = nn.MSELoss()
-            optimizer = torch.optim.AdamW(net.parameters(), lr=0.0001)
+            optimizer = torch.optim.AdamW(net.parameters(), lr=0.001)
 
 
             FILENAME = "../files/trained_models/nn/{}_BENDING.pt".format(csv_file[:-4])
@@ -134,10 +132,9 @@ if __name__ == "__main__":
             y_val_gpu = torch.FloatTensor(np.expand_dims(y_train[int(0.8*len(y_train)):], axis=-1)).to(device)
 
             # Train
-            net = custom_nn.Net10(X_train_gpu.shape[1], 100).to(device)
-            EPOCHS = 100000
+            net = custom_nn.Net10(X_train_gpu.shape[1], 15).to(device)
             loss_fn = nn.MSELoss()
-            optimizer = torch.optim.AdamW(net.parameters(), lr=0.0001)
+            optimizer = torch.optim.AdamW(net.parameters(), lr=0.001)
 
 
             FILENAME = "../files/trained_models/nn/{}_BEARING.pt".format(csv_file[:-4])
