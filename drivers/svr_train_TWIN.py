@@ -30,20 +30,22 @@ if __name__ == "__main__":
         print("========= Training: {} ========".format(csv_file))
         print("=============================")
         # Surface crack only has tension loading
-        if "CS2_QUARTER_ELLIPSE" in csv_file:
-            continue
-
-        else:
+        if "PART_1" in csv_file:
             df = pd.read_csv(dir_path + "/{}".format(csv_file))
             df = df.drop(columns=['b/t'])
+            df = df.sample(n=16000)
+            
 
+            for i in range(2, 7):
+                FILE_NAME = csv_file.replace("PART_1", "PART_{}".format(i))
+                df_ = pd.read_csv(dir_path + "/{}".format(csv_file))
+                df_ = df_.drop(columns=['b/t'])
+                df_ = df_.sample(n=16000)
+                df = pd.concat([df, df_], axis=0, ignore_index=True)
+            
             # Drop crack index
             d = df.to_numpy()[:,1:]
             print("Dataset Size: ", d.shape)
-            print("Training on a subset of size 100000 (randomly sampled)")
-            random_indices = np.random.choice(len(d), size=100000, replace=False)
-            d = d[random_indices]
-            print("Revised dataset Size: ", d.shape)
 
             # X, y
             print("---------------")
@@ -56,7 +58,7 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_TENSION.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_TENSION.joblib'.format(csv_file[:-4].replace("_PART_1","")))
 
 
 
@@ -67,7 +69,7 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_TENSION.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_TENSION.joblib'.format(csv_file[:-4].replace("_PART_1","")))
             print("")
 
             print("---------------")
@@ -80,7 +82,7 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BENDING.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BENDING.joblib'.format(csv_file[:-4].replace("_PART_1","")))
 
 
 
@@ -91,7 +93,7 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BENDING.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BENDING.joblib'.format(csv_file[:-4].replace("_PART_1","")))
             print("")
 
             print("---------------")
@@ -104,7 +106,7 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BEARING.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BEARING.joblib'.format(csv_file[:-4].replace("_PART_1","")))
 
 
 
@@ -115,5 +117,106 @@ if __name__ == "__main__":
             svr.fit(X_train, y_train)
 
             # Saving trained model
-            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BEARING.joblib'.format(csv_file[:-4]))
+            dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BEARING.joblib'.format(csv_file[:-4].replace("_PART_1","")))
             print("")
+
+        elif "PART_2" in csv_file:
+            continue
+
+        elif "PART_3" in csv_file:
+            continue
+
+        elif "PART_4" in csv_file:
+            continue
+
+        elif "PART_5" in csv_file:
+            continue
+
+        elif "PART_6" in csv_file:
+            continue
+
+        else:
+            continue
+            # df = pd.read_csv(dir_path + "/{}".format(csv_file))
+            # df = df.drop(columns=['b/t'])
+
+            # # Drop crack index
+            # d = df.to_numpy()[:,1:]
+            # print("Dataset Size: ", d.shape)
+            # print("Training on a subset of size 100000 (randomly sampled)")
+            # random_indices = np.random.choice(len(d), size=100000, replace=False)
+            # d = d[random_indices]
+            # print("Revised dataset Size: ", d.shape)
+
+            # # X, y
+            # print("---------------")
+            # print("Tension Loading")
+            # print("---------------")
+            # X_train, y_train = shuffle_arrays(d[:,:7], d[:,8])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C1_TENSION.joblib'.format(csv_file[:-4]))
+
+
+
+            # X_train, y_train = shuffle_arrays(np.delete(d[:,:8], 6, axis=1), d[:,9])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C2_TENSION.joblib'.format(csv_file[:-4]))
+            # print("")
+
+            # print("---------------")
+            # print("Bending Loading")
+            # print("---------------")
+            # X_train, y_train = shuffle_arrays(d[:,:7], d[:,10])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BENDING.joblib'.format(csv_file[:-4]))
+
+
+
+            # X_train, y_train = shuffle_arrays(np.delete(d[:,:8], 6, axis=1), d[:,11])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BENDING.joblib'.format(csv_file[:-4]))
+            # print("")
+
+            # print("---------------")
+            # print("Bearing Loading")
+            # print("---------------")
+            # X_train, y_train = shuffle_arrays(d[:,:7], d[:,12])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C1_BEARING.joblib'.format(csv_file[:-4]))
+
+
+
+            # X_train, y_train = shuffle_arrays(np.delete(d[:,:8], 6, axis=1), d[:,13])
+
+            # # Train
+            # svr = SVR()
+            # svr.fit(X_train, y_train)
+
+            # # Saving trained model
+            # dump(svr, '../files/trained_models/svr/{}_TWIN_C2_BEARING.joblib'.format(csv_file[:-4]))
+            # print("")
