@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,10].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,11].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,12].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,13].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -242,7 +242,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,10].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -259,7 +259,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,11].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -279,7 +279,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,12].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 
@@ -296,7 +296,7 @@ if __name__ == "__main__":
                 y_pred = net.forward(X_test_gpu).cpu().numpy()[:,0]
 
             # Saving predictions model
-            np.save('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
+            np.save('../files/predictions/nn/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4].replace("PART_1_TEST", "TRAIN")), y_pred)
             l2_err = mean_normalized_l2(d[:,13].reshape(-1, 16), y_pred.reshape(-1, 16))
             print("L2 error: ", l2_err)
 

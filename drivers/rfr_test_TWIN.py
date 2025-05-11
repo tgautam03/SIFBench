@@ -14,7 +14,7 @@ if __name__ == "__main__":
     which_data = "TWIN"
     
     # Specify the directory path
-    dir_path = "../files/data/FINAL_CSV/{}/TEST".format(which_data)
+    dir_path = "../files/data/TWIN/{}/TEST".format(which_data)
 
     # Get all .csv files
     csv_files = [f for f in os.listdir(dir_path) if f.endswith(".csv")]
@@ -157,12 +157,12 @@ if __name__ == "__main__":
             print("---------------")
 
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C1_TENSION.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(d[:,:7])
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C1_TENSION.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(d[:,:7])
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C1_TENSION.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_TENSION.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C1_TENSION.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_TENSION.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,8].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
@@ -170,12 +170,12 @@ if __name__ == "__main__":
 
 
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C2_TENSION.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C2_TENSION.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C2_TENSION.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_TENSION.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C2_TENSION.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_TENSION.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,9].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
@@ -186,12 +186,12 @@ if __name__ == "__main__":
             print("---------------")
             
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C1_BENDING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(d[:,:7])
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C1_BENDING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(d[:,:7])
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_BENDING.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,10].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
@@ -199,12 +199,12 @@ if __name__ == "__main__":
 
 
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C2_BENDING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C2_BENDING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_BENDING.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,11].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
@@ -215,12 +215,12 @@ if __name__ == "__main__":
             print("---------------")
             
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C1_BEARING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(d[:,:7])
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C1_BEARING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(d[:,:7])
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C1_BEARING.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,12].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
@@ -228,12 +228,12 @@ if __name__ == "__main__":
 
 
             # Testing
-            # rfr = load('../files/trained_models/rfr/{}_TWIN_C2_BEARING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
-            # y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
+            rfr = load('../files/trained_models/rfr/{}_TWIN_C2_BEARING.joblib'.format(csv_file[:-4].replace("TEST", "TRAIN")))
+            y_pred = rfr.predict(np.delete(d[:,:8], 6, axis=1))
 
-            # # Saving predictions model
-            # np.save('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4]), y_pred)
-            y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4]))
+            # Saving predictions model
+            np.save('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4]), y_pred)
+            # y_pred = np.load('../files/predictions/rfr/{}_TWIN_C2_BEARING.npy'.format(csv_file[:-4]))
             l2_err = mean_normalized_l2(d[:,13].reshape(len(test_combinations), 16), y_pred.reshape(len(test_combinations), 16))
             print("L2 error: ", l2_err)
 
