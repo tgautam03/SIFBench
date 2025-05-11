@@ -1,0 +1,4 @@
+# Surface Crack in a Plate
+This dataset contains semi-elliptical surface cracks embedded in rectangular plates subjected to Mode I tensile loading. The SIFs ($K_\text{I}$) were extracted from FEM-computed displacement fields using Abaqus, in conjunction with the fracture mechanics software FRANC3D. The $K_\text{I}$ values were calculated from the stress fields via the M-integral method.
+
+This dataset (train+test) contains 2,956 unique simulations, each defined by distinct plate and crack geometries. In total, approximately 100,000 SIF values ($K-T$) were generated. Each crack geometry is characterized by three dimensionless parameters: $a/t$, $a/c$, and $c/b$, where $a$ is the crack depth, $c$ is the surface half-length, $t$ is the plate thickness, and $b$ is the plate width. Individual points along the crack front are identified by the angle $\phi$, measured with respect to the inscribed circle.
