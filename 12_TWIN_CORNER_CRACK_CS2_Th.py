@@ -26,12 +26,12 @@ if __name__ == "__main__":
     ################################# Training ###################################
     ##############################################################################
     if what_to_do == "Train":
-        print("{} using the through-thickness corner crack at countesunk hole 2 dataset".format(what_to_do))
+        print("{} using the through-thickness corner crack at countersunk hole 2 dataset".format(what_to_do))
 
         # Loading dataset
         df_train = pd.read_csv("files/data/TWIN/CORNER_CRACK_COUNTERSUNK_HOLE/TWIN_CORNER_CRACK_CS2_THROUGH_THICKNESS_TRAIN.csv")
         df_train = df_train.drop(columns=['b/t'])
-        # df_train = df_train[(df_train["W/R"] >= 2) & (df_train["W/R"] <= 20)]
+        df_train = df_train[(df_train["W/R"] >= 4) & (df_train["W/R"] <= 10)]
         df_train = df_train[(df_train["r/t"] >= 0.5) & (df_train["r/t"] <= 1.5)]
         train_combinations = df_train.iloc[:, 1:7].drop_duplicates().to_numpy()
         d_full = df_train.to_numpy()[:,1:]
@@ -143,16 +143,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -322,16 +324,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -501,16 +505,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -582,7 +588,7 @@ if __name__ == "__main__":
         # Loading dataset
         df_test = pd.read_csv("files/data/TWIN/CORNER_CRACK_COUNTERSUNK_HOLE/TWIN_CORNER_CRACK_CS2_THROUGH_THICKNESS_TEST.csv")
         df_test = df_test.drop(columns=['b/t'])
-        # df_test = df_test[(df_test["W/R"] >= 2) & (df_test["W/R"] <= 20)]
+        df_test = df_test[(df_test["W/R"] >= 4) & (df_test["W/R"] <= 10)]
         df_test = df_test[(df_test["r/t"] >= 0.5) & (df_test["r/t"] <= 1.5)]
         test_combinations = df_test.iloc[:, 1:7].drop_duplicates().to_numpy()
         d = df_test.to_numpy()[:,1:]
@@ -677,9 +683,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -687,7 +693,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]
@@ -832,9 +840,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -842,7 +850,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]
@@ -987,9 +997,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -997,7 +1007,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]

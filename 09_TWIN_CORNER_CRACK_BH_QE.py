@@ -143,16 +143,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -322,16 +324,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -501,16 +505,18 @@ if __name__ == "__main__":
         random_indices = np.random.choice(len(train_combinations), size=min(len(train_combinations), 25000), replace=False)
         train_combinations = train_combinations[random_indices]
 
-        X1_fno = np.zeros((len(train_combinations), 128, 5))
+        X1_fno = np.zeros((len(train_combinations), 128, 7))
         y1_fno = np.zeros((len(train_combinations), 128))
-        X2_fno = np.zeros((len(train_combinations), 128, 5))
+        X2_fno = np.zeros((len(train_combinations), 128, 7))
         y2_fno = np.zeros((len(train_combinations), 128))
 
         for (i, combination) in enumerate(train_combinations):
             indices = np.where((d_full[:, 0] == combination[0]) & 
                             (d_full[:, 1] == combination[1]) &
                             (d_full[:, 2] == combination[2]) &
-                            (d_full[:, 3] == combination[3]))
+                            (d_full[:, 3] == combination[3]) &
+                            (d_full[:, 4] == combination[4]) &
+                            (d_full[:, 5] == combination[5]))
             indices = indices[0]
 
             phi_values = d_full[indices][:,6]
@@ -677,9 +683,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -687,7 +693,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]
@@ -832,9 +840,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -842,7 +850,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]
@@ -987,9 +997,9 @@ if __name__ == "__main__":
         ############################### FNO ###############################
         print("==========================================================")
         print("Testing FNO")
-        X1_fno = np.zeros((len(test_combinations), 128, 5))
+        X1_fno = np.zeros((len(test_combinations), 128, 7))
         y1_fno = np.zeros((len(test_combinations), 128))
-        X2_fno = np.zeros((len(test_combinations), 128, 5))
+        X2_fno = np.zeros((len(test_combinations), 128, 7))
         y2_fno = np.zeros((len(test_combinations), 128))
         print("Input size: {}; Output size: {}".format(X1_fno.shape, y1_fno.shape))
 
@@ -997,7 +1007,9 @@ if __name__ == "__main__":
             indices = np.where((d[:, 0] == combination[0]) & 
                             (d[:, 1] == combination[1]) &
                             (d[:, 2] == combination[2]) &
-                            (d[:, 3] == combination[3])) 
+                            (d[:, 3] == combination[3]) &
+                            (d[:, 4] == combination[4]) &
+                            (d[:, 5] == combination[5])) 
             indices = indices[0]
 
             phi_values = d[indices][:,6]
