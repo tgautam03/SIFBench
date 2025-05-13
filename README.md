@@ -9,6 +9,50 @@ The single-crack category includes semi-elliptical surface cracks in a finite pl
 2. **nb_analysis:** Jupyter notebooks showing the detailed dataset analysis.
 3. **src:** Source files for training FNN and FNO. 
 
+## Reproducing Results
+### Single Crack
+0. **Surface Crack in a Plate:** 
+    - ***Training:*** `python 00_SURFACE_CRACK.py Train`
+    - ***Testing:*** `python 00_SURFACE_CRACK.py Test`
+1. **Quarter-Elliptical Corner Crack at the straight hole in a Plate:** 
+    - ***Training:*** `python 01_CORNER_CRACK_BH_QE.py Train`
+    - ***Testing:*** `python 01_CORNER_CRACK_BH_QE.py Test`
+2. **Through-Thickness Corner Crack at the straight hole in a Plate:** 
+    - ***Training:*** `python 02_CORNER_CRACK_BH_Th.py Train`
+    - ***Testing:*** `python 02_CORNER_CRACK_BH_Th.py Test`
+3. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.75$) in a Plate:** 
+    - ***Training:*** `python 03_CORNER_CRACK_CS1_QE.py Train`
+    - ***Testing:*** `python 03_CORNER_CRACK_CS1_QE.py Test`
+4. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
+    - ***Training:*** `python 04_CORNER_CRACK_CS2_QE.py Train`
+    - ***Testing:*** `python 04_CORNER_CRACK_CS2_QE.py Test`
+5. **Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
+    - ***Training:*** `python 05_CORNER_CRACK_CS2_Th.py Train`
+    - ***Testing:*** `python 05_CORNER_CRACK_CS2_Th.py Test`
+6. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.25$) in a Plate:** 
+    - ***Training:*** `python 06_CORNER_CRACK_CS3_QE.py Train`
+    - ***Testing:*** `python 06_CORNER_CRACK_CS3_QE.py Test`
+7. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.05$) in a Plate:** 
+    - ***Training:*** `python 07_CORNER_CRACK_CS4_QE.py Train`
+    - ***Testing:*** `python 07_CORNER_CRACK_CS4_QE.py Test`
+8. **Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.05$) in a Plate:** 
+    - ***Training:*** `python 08_CORNER_CRACK_CS4_Th.py Train`
+    - ***Testing:*** `python 08_CORNER_CRACK_CS4_Th.py Test`
+
+### Twin Crack
+9. **Twin Quarter-Elliptical Corner Cracks at the straight hole in a Plate:** 
+    - ***Training:*** `python 09_TWIN_CORNER_CRACK_BH_QE.py Train`
+    - ***Testing:*** `python 09_TWIN_CORNER_CRACK_BH_QE.py Test`
+10. **Twin Through-Thickness Corner Crack at the straight hole in a Plate:** 
+    - ***Training:*** `python 10_TWIN_CORNER_CRACK_BH_Th.py Train`
+    - ***Testing:*** `python 10_TWIN_CORNER_CRACK_BH_Th.py Test`
+11. **Twin Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
+    - ***Training:*** `python 11_TWIN_CORNER_CRACK_CS2_QE.py Train`
+    - ***Testing:*** `python 11_TWIN_CORNER_CRACK_CS2_QE.py Test`
+12. **Twin Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
+    - ***Training:*** `python 12_TWIN_CORNER_CRACK_CS2_Th.py Train`
+    - ***Testing:*** `python 12_TWIN_CORNER_CRACK_CS2_Th.py Test`
+
 ## Single Crack Results
 ### Mean Normalized L2 Error
 | Scenario                               | Loading | RFR    | SVR    | FNN    | FNO    |
@@ -100,47 +144,3 @@ The single-crack category includes semi-elliptical surface cracks in a finite pl
 | TT CC (Countersunk) | Tension | 0.025  | 0.017  | 0.085  | 0.070  | 0.069  | 0.076  | 0.100  | 0.082  |
 | TT CC (Countersunk) | Bending | 0.169  | 0.149  | 0.889  | 1.187  | 0.128  | 0.145  | 0.898  | 1.141  |
 | TT CC (Countersunk) | Bearing | 0.029  | 0.022  | 0.083  | 0.074  | 0.071  | 0.339  | 0.068  | 0.084  |
-
-## Reproducing Results
-### Single Crack
-0. **Surface Crack in a Plate:** 
-    - ***Training:*** `python 00_SURFACE_CRACK.py Train`
-    - ***Testing:*** `python 00_SURFACE_CRACK.py Test`
-1. **Quarter-Elliptical Corner Crack at the straight hole in a Plate:** 
-    - ***Training:*** `python 01_CORNER_CRACK_BH_QE.py Train`
-    - ***Testing:*** `python 01_CORNER_CRACK_BH_QE.py Test`
-2. **Through-Thickness Corner Crack at the straight hole in a Plate:** 
-    - ***Training:*** `python 02_CORNER_CRACK_BH_Th.py Train`
-    - ***Testing:*** `python 02_CORNER_CRACK_BH_Th.py Test`
-3. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.75$) in a Plate:** 
-    - ***Training:*** `python 03_CORNER_CRACK_CS1_QE.py Train`
-    - ***Testing:*** `python 03_CORNER_CRACK_CS1_QE.py Test`
-4. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
-    - ***Training:*** `python 04_CORNER_CRACK_CS2_QE.py Train`
-    - ***Testing:*** `python 04_CORNER_CRACK_CS2_QE.py Test`
-5. **Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
-    - ***Training:*** `python 05_CORNER_CRACK_CS2_Th.py Train`
-    - ***Testing:*** `python 05_CORNER_CRACK_CS2_Th.py Test`
-6. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.25$) in a Plate:** 
-    - ***Training:*** `python 06_CORNER_CRACK_CS3_QE.py Train`
-    - ***Testing:*** `python 06_CORNER_CRACK_CS3_QE.py Test`
-7. **Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.05$) in a Plate:** 
-    - ***Training:*** `python 07_CORNER_CRACK_CS4_QE.py Train`
-    - ***Testing:*** `python 07_CORNER_CRACK_CS4_QE.py Test`
-8. **Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.05$) in a Plate:** 
-    - ***Training:*** `python 08_CORNER_CRACK_CS4_Th.py Train`
-    - ***Testing:*** `python 08_CORNER_CRACK_CS4_Th.py Test`
-
-### Twin Crack
-9. **Twin Quarter-Elliptical Corner Cracks at the straight hole in a Plate:** 
-    - ***Training:*** `python 09_TWIN_CORNER_CRACK_BH_QE.py Train`
-    - ***Testing:*** `python 09_TWIN_CORNER_CRACK_BH_QE.py Test`
-10. **Twin Through-Thickness Corner Crack at the straight hole in a Plate:** 
-    - ***Training:*** `python 10_TWIN_CORNER_CRACK_BH_Th.py Train`
-    - ***Testing:*** `python 10_TWIN_CORNER_CRACK_BH_Th.py Test`
-11. **Twin Quarter-Elliptical Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
-    - ***Training:*** `python 11_TWIN_CORNER_CRACK_CS2_QE.py Train`
-    - ***Testing:*** `python 11_TWIN_CORNER_CRACK_CS2_QE.py Test`
-12. **Twin Through-Thickness Corner Crack at the countersunk hole (with $b/t=0.5$) in a Plate:** 
-    - ***Training:*** `python 12_TWIN_CORNER_CRACK_CS2_Th.py Train`
-    - ***Testing:*** `python 12_TWIN_CORNER_CRACK_CS2_Th.py Test`
