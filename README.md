@@ -5,7 +5,7 @@ SIFBench, a benchmark database developed to support the advancement and validati
 The single-crack category includes semi-elliptical surface cracks in a finite plate subjected to tensile loading, as well as various quarter-elliptical and through-thickness corner cracks located at straight and countersunk bolt holes. Most configurations are analyzed under three independent loading conditions: ***tension***, ***bending***, and ***bearing***. The twin-crack category consists of paired quarter-elliptical and through-thickness corner cracks, also positioned at straight and countersunk bolt holes and evaluated under the same three loading conditions, each applied separately.
 
 ## Directory Details
-1. **files:** Data, models, predictions files. All these can be accessed from https://huggingface.co/datasets/tgautam03/SIFBench/tree/main
+1. **files:** Data, models, predictions files. Data can be accessed from https://huggingface.co/datasets/tgautam03/SIFBench/tree/main
 2. **nb_analysis:** Jupyter notebooks showing the detailed dataset analysis.
 3. **src:** Source files for training FNN and FNO. 
 
