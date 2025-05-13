@@ -195,6 +195,7 @@ if __name__ == "__main__":
             crack_type = data_name.split('/')[-1]
             
             if crack_type == "TWIN_CORNER_CRACK_BH_QUARTER_ELLIPSE" or crack_type == "TWIN_CORNER_CRACK_BH_THROUGH_THICKNESS":
+                df_test = pd.read_csv(data_name+'_TEST.csv')
                 df_test = df_test.drop(columns=['b/t'])
                 df_test = df_test[(df_test["r/t"] >= 0.5) & (df_test["r/t"] <= 1.5)]
                 test_combinations = df_test.iloc[:, 1:7].drop_duplicates().to_numpy()
@@ -245,6 +246,7 @@ if __name__ == "__main__":
                 TWIN_abs[i,j,3,1] = mean_normalized_abs(y2_test, y2_pred)
             
             else:
+                df_test = pd.read_csv(data_name+'_TEST.csv')
                 df_test = df_test.drop(columns=['b/t'])
                 df_test = df_test[(df_test["W/R"] >= 4) & (df_test["W/R"] <= 10)]
                 df_test = df_test[(df_test["r/t"] >= 0.5) & (df_test["r/t"] <= 1.5)]
@@ -303,10 +305,10 @@ if __name__ == "__main__":
         crack_type = data_name.split('/')[-1]
         for (j, LOADING) in enumerate(LOADINGS):
             print("{} ({}) | {:.3f} & {:.3f}   & {:.3f} & {:.3f}   & {:.3f} & {:.3f}   & {:.3f} & {:.3f}".format(crack_type, LOADING,
-                                                                                 TWIN_l2[i,j,0,1], TWIN_l2[i,j,0,2],
-                                                                                 TWIN_l2[i,j,1,1], TWIN_l2[i,j,1,2],
-                                                                                 TWIN_l2[i,j,2,1], TWIN_l2[i,j,2,2],
-                                                                                 TWIN_l2[i,j,3,1], TWIN_l2[i,j,3,2]))
+                                                                                 TWIN_l2[i,j,0,0], TWIN_l2[i,j,0,1],
+                                                                                 TWIN_l2[i,j,1,0], TWIN_l2[i,j,1,1],
+                                                                                 TWIN_l2[i,j,2,0], TWIN_l2[i,j,2,1],
+                                                                                 TWIN_l2[i,j,3,0], TWIN_l2[i,j,3,1]))
             
             if LOADING == "BEARING":
                 print("----------------------------------------------------------")
@@ -322,10 +324,10 @@ if __name__ == "__main__":
         crack_type = data_name.split('/')[-1]
         for (j, LOADING) in enumerate(LOADINGS):
             print("{} ({}) | {:.3f} & {:.3f}   & {:.3f} & {:.3f}   & {:.3f} & {:.3f}   & {:.3f} & {:.3f}".format(crack_type, LOADING,
-                                                                                 TWIN_abs[i,j,0,1], TWIN_abs[i,j,0,2],
-                                                                                 TWIN_abs[i,j,1,1], TWIN_abs[i,j,1,2],
-                                                                                 TWIN_abs[i,j,2,1], TWIN_abs[i,j,2,2],
-                                                                                 TWIN_abs[i,j,3,1], TWIN_abs[i,j,3,2]))
+                                                                                 TWIN_abs[i,j,0,0], TWIN_abs[i,j,0,1],
+                                                                                 TWIN_abs[i,j,1,0], TWIN_abs[i,j,1,1],
+                                                                                 TWIN_abs[i,j,2,0], TWIN_abs[i,j,2,1],
+                                                                                 TWIN_abs[i,j,3,0], TWIN_abs[i,j,3,1]))
             
             if LOADING == "BEARING":
                 print("----------------------------------------------------------")
